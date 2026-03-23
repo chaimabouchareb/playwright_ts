@@ -1,0 +1,14 @@
+{
+  "name": "e2e-automation-e-commerce",
+  "version": "1.0.0",
+  "description": "playwright-ecommerce/\r │\r ├── tests/\r │   ├── login.spec.ts\r │   ├── add-to-cart.spec.ts\r │   └── checkout.spec.ts\r │\r ├── pages/\r │   ├── LoginPage.ts\r │   ├── InventoryPage.ts\r │   └── CheckoutPage.ts\r │\r ├── utils/\r │   └── test-data.ts\r │\r └── playwright.config.ts",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.3"
+  }
+}
