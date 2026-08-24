@@ -45,6 +45,6 @@ test("verify locators", async ({ page }) => {
 
   //getByTestId
   const proPlanButton = page.getByTestId('add-to-cart-starter');
-  await expect(proPlanButton).
+  await expect(proPlanButton)
 
-});
+})
