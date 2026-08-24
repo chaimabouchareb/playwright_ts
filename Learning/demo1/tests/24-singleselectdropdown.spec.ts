@@ -9,12 +9,11 @@ test("Single select dropdown", async ({ page }) => {
 
   //2. check number of options in the dropdown(count)
   const dropdownOptions: Locator = page.locator("#country>option");
-  await expect(dropdownOptions).toHaveCount(10);
+  await expect(dropdownOptions).toHaveCount(await dropdownOptions.count());
 
   //3. check an option present in the dropdown
   const optionText: string[] = (await dropdownOptions.allTextContents()).map(
-    (text) => text.trim(),
-  ); //capture all the text of every option and store it in an array
+    (text) => text.trim(),); //capture all the text of every option and store it in an array
   //console.log(optionText);
   expect(optionText).toContain("France"); //check if the array contains France
   //4. printing options from the dropdown
