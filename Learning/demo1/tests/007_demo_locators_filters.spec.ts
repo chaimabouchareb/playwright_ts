@@ -37,8 +37,45 @@ test('2. Count items not having "Out of stock"', async ({ page }) => {
     */
   const inStockitems = page
     .locator(".card")
-    .nth(1)
+    .nth(1) // go to the second card and find the list items in it
     .getByRole("listitem")
     .filter({ hasNotText: "Out of stock" });
   await expect(inStockitems).toHaveCount(3);
 });
+
+test('3. Find items with "In stock"', async ({ page }) => {
+
+  const productInStock = page.getByRole('listitem').filter({hasText:'In stock'})
+  await expect(productInStock).toHaveCount(3);
+});
+
+// how to use page.getByTestId
+
+test('4. Verify elements using data-testid', async ({ page }) => {
+  const apple = page.getByTestId('apple');
+  await expect(apple).toBeVisible();
+  await expect(apple).toContainText('apple');
+});
+
+test('5.Count all elements with test ids', async ({ page }) => {
+  const testIdElements = page.locator('[data-testid]');
+  const firstElement = testIdElements.first();
+  const lastElement = testIdElements.last();
+  const nthElement = testIdElements.nth(3);
+
+  console.log(
+    `fruits are ... ${await firstElement.innerText()}, ${await lastElement.innerText()}, ${await nthElement.innerText()}`
+  );
+
+  await expect(testIdElements).toHaveCount(5);
+});
+
+test('6.Find "Say goodbye" button for John', async ({ page }) => {
+  const goodbyeButton = page.getByRole('listitem')
+  .filter({ hasText: 'John' })
+  .getByRole('button', { name: 'Say goodbye' });
+  await expect(goodbyeButton).toBeVisible();
+  await expect(goodbyeButton).toHaveText('Say goodbye');
+  
+
+})
