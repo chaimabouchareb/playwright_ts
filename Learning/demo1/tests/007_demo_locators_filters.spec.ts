@@ -79,3 +79,36 @@ test('6.Find "Say goodbye" button for John', async ({ page }) => {
   
 
 })
+
+test('7.Find "Say hello" button for Mary', async ({ page }) => {
+  const helloButton = page
+    .getByRole("listitem")
+    .filter({ hasText: "Mary" })
+    .getByRole("button", { name: "Say hello" });
+  await expect(helloButton).toBeVisible();
+  await expect(helloButton).toHaveText("Say hello");
+});
+
+
+/* ======================================================
+
+matching multiple locators using .and()
+find "suscribe" buttons using multiple conditions
+role="button" and have title subscribe
+
+====================================================== */
+test('8.Find "Subscribe" buttons using multiple conditions', async ({
+  page,
+}) => {
+  /*const subscribeButtons = page.getByRole("button", {
+    name: "Subscribe",
+    exact: true,
+  });*/
+  const subscribeButtons = page.getByRole('button').and(page.getByTitle('Subscribe',{exact:true}));
+
+  console.log("Subscribe buttons count: ", await subscribeButtons.count());
+  await expect(subscribeButtons).toHaveCount(2);
+  await expect(subscribeButtons.first()).toBeVisible();
+  await expect(subscribeButtons.last()).toBeVisible();
+
+});
